@@ -19,7 +19,6 @@ model User {
   email       String  @unique
   username    String  @unique
   displayName String?
-  name        String?
   bio         String?
   location    String?
   job         String?
