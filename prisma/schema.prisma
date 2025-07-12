@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -27,11 +26,11 @@ model User {
   cover       String?
 
   //Relations
-  posts Post[]
-  likes Like[]
-  saves SavedPosts[]
-  followers Follow[] @relation("UserFollowers")
-  following Follow[] @relation("UserFollowing")
+  posts     Post[]
+  likes     Like[]
+  saves     SavedPosts[]
+  followers Follow[]     @relation("UserFollowers")
+  following Follow[]     @relation("UserFollowing")
 }
 
 model Post {
@@ -68,7 +67,7 @@ model Like {
   user   User   @relation(fields: [userId], references: [id])
 
   postId Int
-  post   Post   @relation(fields: [postId], references: [id])
+  post   Post @relation(fields: [postId], references: [id])
 }
 
 model SavedPosts {
@@ -80,7 +79,7 @@ model SavedPosts {
   user   User   @relation(fields: [userId], references: [id])
 
   postId Int
-  post   Post   @relation(fields: [postId], references: [id])
+  post   Post @relation(fields: [postId], references: [id])
 }
 
 model Follow {
