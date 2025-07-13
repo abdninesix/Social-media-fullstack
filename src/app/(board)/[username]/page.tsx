@@ -6,7 +6,8 @@ import { notFound } from "next/navigation";
 
 const UserPage = async ({ params }: { params: { username: string } }) => {
 
-  const user = await prisma.user.findUnique({ where: { username: params.username } })
+  const { username } = await params
+  const user = await prisma.user.findUnique({ where: { username: username } })
 
   if (!user) return notFound()
 
@@ -17,7 +18,7 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
         <Link href="/">
           <Image path="sm/icons/back.svg" alt="back" w={24} h={24} />
         </Link>
-        <h1 className="font-bold text-lg">Abdullah</h1>
+        <h1 className="font-bold text-lg">{user.displayName}</h1>
       </div>
       {/* INFO */}
       <div className="">
@@ -50,10 +51,10 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
         <div className="p-4 flex flex-col gap-2">
           {/* USERNAME & HANDLE */}
           <div className="">
-            <h1 className="text-2xl font-bold">Abdullah</h1>
-            <span className="text-textGray text-sm">@abdninesix</span>
+            <h1 className="text-2xl font-bold">{user.displayName}</h1>
+            <span className="text-textGray text-sm">@{user.username}</span>
           </div>
-          <p>Hi! Your usual web developer here.</p>
+          <p>{user.bio}</p>
           {/* JOB & LOCATION & DATE */}
           <div className="flex gap-4 text-textGray text-[15px]">
             <div className="flex items-center gap-2">
@@ -63,7 +64,7 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
                 w={20}
                 h={20}
               />
-              <span>Pakistan</span>
+              <span>{user.location}</span>
             </div>
             <div className="flex items-center gap-2">
               <Image path="sm/icons/date.svg" alt="date" w={20} h={20} />
