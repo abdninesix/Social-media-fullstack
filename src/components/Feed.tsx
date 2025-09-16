@@ -26,7 +26,7 @@ const Feed = async ({ userProfileId }: { userProfileId?: string }) => {
       {/* This component fetches the first 3 posts on load */}
       {posts.map((post) => (
         <div key={post.id}>
-          <Post />
+          <Post post={post} />
         </div>
       ))}
       {/* This component fetches the next 3 posts on scroll and continues to do so */}

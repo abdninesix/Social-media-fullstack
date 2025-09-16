@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
 
     const hasMore = Number(page) * limit < totalPosts;
 
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    // await new Promise(resolve => setTimeout(resolve, 3000));
 
     return Response.json({ posts, hasMore });
 }
