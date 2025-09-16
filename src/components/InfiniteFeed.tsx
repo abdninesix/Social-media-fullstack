@@ -26,7 +26,7 @@ const InfiniteFeed = ({ userProfileId }: { userProfileId?: string }) => {
 
     return (
         <InfiniteScroll dataLength={allPosts.length} next={fetchNextPage} hasMore={!!hasNextPage} loader={<p>Posts are loading</p>} endMessage={<p>No more posts</p>}>
-            {allPosts.map(post => (<Post key={post.id} />))}
+            {allPosts.map((post) => (<Post key={post.id} />))}
         </InfiniteScroll>
     )
 }

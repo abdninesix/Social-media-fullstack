@@ -23,12 +23,14 @@ const Feed = async ({ userProfileId }: { userProfileId?: string }) => {
 
   return (
     <div>
+      {/* This component fetches the first 3 posts on load */}
       {posts.map((post) => (
         <div key={post.id}>
           <Post />
         </div>
       ))}
-      <InfiniteFeed userProfileId={userProfileId}/>
+      {/* This component fetches the next 3 posts on scroll and continues to do so */}
+      <InfiniteFeed userProfileId={userProfileId} />
     </div>
   )
 }
