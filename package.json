@@ -12,6 +12,7 @@
     "@clerk/elements": "^0.23.38",
     "@clerk/nextjs": "^6.24.0",
     "@prisma/client": "6.11.1",
+    "@tanstack/react-query": "^5.89.0",
     "imagekit": "^6.0.0",
     "imagekitio-next": "^1.0.1",
     "next": "15.1.0",
