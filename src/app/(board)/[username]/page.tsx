@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 
 const UserPage = async ({ params }: { params: { username: string } }) => {
 
-  const { username } = await params
+  const { username } = params
   const user = await prisma.user.findUnique({ where: { username: username } })
 
   if (!user) return notFound()

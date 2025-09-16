@@ -55,7 +55,6 @@ const SignUpPage = () => {
           </SignUp.Step>
 
           <SignUp.Step name="continue" className='flex flex-col gap-8'>
-
             <Clerk.Field name="username">
               <Clerk.Input placeholder='Username' className='py-2 px-6 rounded-full text-black w-72 placeholder:text-sm' />
               <Clerk.FieldError className='text-red-300 text-sm' />
@@ -65,7 +64,6 @@ const SignUpPage = () => {
           </SignUp.Step>
 
           <SignUp.Step name="verifications" className='flex flex-col justify-between text-sm text-iconBlue'>
-
             {/* Email code entry */}
             <SignUp.Strategy name="email_code">
               <p className='text-sm mb-8'>Please check your email for verification code</p>

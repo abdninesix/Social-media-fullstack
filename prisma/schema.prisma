@@ -24,7 +24,6 @@ model User {
   website     String?
   img         String?
   cover       String?
-
   //Relations
   posts     Post[]
   likes     Like[]
