@@ -19,14 +19,20 @@ const Feed = async ({ userProfileId }: { userProfileId?: string }) => {
     }
   }
 
-  const posts = await prisma.post.findMany({ where: whereCondition, take: 3, skip: 0, orderBy: { createdAt: "desc" } })
+  const posts = await prisma.post.findMany({
+    where: whereCondition,
+    include: { user: { select: { displayName: true, username: true, img: true } } },
+    take: 3,
+    skip: 0,
+    orderBy: { createdAt: "desc" }
+  })
 
   return (
     <div>
       {/* This component fetches the first 3 posts on load */}
       {posts.map((post) => (
         <div key={post.id}>
-          <Post post={post} />
+          <Post post={post}  />
         </div>
       ))}
       {/* This component fetches the next 3 posts on scroll and continues to do so */}
