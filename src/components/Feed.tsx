@@ -21,8 +21,11 @@ const Feed = async ({ userProfileId }: { userProfileId?: string }) => {
 
   const posts = await prisma.post.findMany({
     where: whereCondition,
-    include: { user: { select: { displayName: true, username: true, img: true } } },
-    take: 3,
+    include: {
+      user: { select: { displayName: true, username: true, img: true } },
+      rePost: { include: { user: { select: { displayName: true, username: true, img: true } } } }
+    },
+    take: 10,
     skip: 0,
     orderBy: { createdAt: "desc" }
   })

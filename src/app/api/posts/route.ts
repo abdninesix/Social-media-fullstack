@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams
     const userProfileId = searchParams.get("user")
     const page = searchParams.get("cursor")
-    const limit = 3
+    const limit = 5
 
     const { userId } = await auth()
     if (!userId) return
@@ -25,7 +25,11 @@ export async function GET(request: NextRequest) {
 
     const posts = await prisma.post.findMany({
         where: whereCondition,
-        include: { user: { select: { displayName: true, username: true, img: true } } },
+        include: {
+            user: { select: { displayName: true, username: true, img: true } },
+            rePost: { include: { user: { select: { displayName: true, username: true, img: true }
+         } } }
+        },
         take: limit,
         skip: (Number(page) - 1) * limit
     })
