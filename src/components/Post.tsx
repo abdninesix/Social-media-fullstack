@@ -9,7 +9,7 @@ import { format } from 'timeago.js';
 
 type PostWithDetails = PostType & {
   user: {
-    displayName: string;
+    displayName: string | null;
     username: string;
     img: string | null;
   }
@@ -41,37 +41,31 @@ const Post = ({ type, post }: { type?: "status" | "comment", post: PostWithDetai
         {/* CONTENT */}
         <div className="flex-1 flex flex-col gap-2">
           {/* TOP */}
-          <div className="w-full flex justify-between">Hello
+          <div className="w-full flex justify-between">
             <Link href={`/${post.user.username}`} className="flex gap-4">
-              {post.user.img && (
-                <div
-                  className={`${type !== "status" && "hidden"
-                    } relative size-10 rounded-full overflow-hidden`}
-                >
-                  <Image
-                    path={post.user.img}
-                    alt=""
-                    w={100}
-                    h={100}
-                    tr={true}
-                  />
-                </div>)}
+              <div
+                className={`${type !== "status" && "hidden"
+                  } relative size-10 rounded-full overflow-hidden`}
+              >
+                <Image
+                  path={post.user.img || "sm/general/avatarNew.png"}
+                  alt=""
+                  w={100}
+                  h={100}
+                  tr={true}
+                />
+              </div>
               <div
                 className={`flex items-center gap-2 flex-wrap ${type === "status" && "!items-start"
                   }`}
               >
                 {/* AVATAR */}
-                {post.user.img ? (<div
+                <div
                   className={`${type === "status" && "hidden"
                     } relative size-10 rounded-full overflow-hidden`}
                 >
-                  <Image path={post.user.img} alt="" w={100} h={100} tr={true} />
-                </div>) : (<div
-                  className={`${type === "status" && "hidden"
-                    } relative size-10 rounded-full overflow-hidden`}
-                >
-                  <Image path="sm/general/avatarNew.png" alt="" w={100} h={100} tr={true} />
-                </div>)}
+                  <Image path={post.user.img || "sm/general/avatarNew.png"} alt="" w={100} h={100} tr={true} />
+                </div>
                 <h1 className="text-md font-bold">{post.user.displayName}</h1>
                 <span
                   className={`text-textGray ${type === "status" && "text-sm"}`}
