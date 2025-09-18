@@ -1,6 +1,6 @@
 "use client";
 
-const PostInteractions = ({ count, isLiked }: { count: { likes: number; comments: number; rePosts: number }, isLiked: boolean }) => {
+const PostInteractions = ({ count, isLiked, isRePosted }: { count: { likes: number; comments: number; rePosts: number }, isLiked: boolean, isRePosted: boolean }) => {
   return (
     <div className="flex items-center justify-between gap-4 lg:gap-16 my-2 text-textGray">
       <div className="flex items-center justify-between flex-1">
@@ -28,11 +28,11 @@ const PostInteractions = ({ count, isLiked }: { count: { likes: number; comments
             viewBox="0 0 24 24"
           >
             <path
-              className="fill-textGray group-hover:fill-iconGreen"
+              className={`${isRePosted ? 'fill-iconGreen' : 'fill-textGray'} group-hover:fill-iconGreen`}
               d="M4.75 3.79l4.603 4.3-1.706 1.82L6 8.38v7.37c0 .97.784 1.75 1.75 1.75H13V20H7.75c-2.347 0-4.25-1.9-4.25-4.25V8.38L1.853 9.91.147 8.09l4.603-4.3zm11.5 2.71H11V4h5.25c2.347 0 4.25 1.9 4.25 4.25v7.37l1.647-1.53 1.706 1.82-4.603 4.3-4.603-4.3 1.706-1.82L18 15.62V8.25c0-.97-.784-1.75-1.75-1.75z"
             />
           </svg>
-          <span className="group-hover:text-iconGreen text-sm">{count.rePosts}</span>
+          <span className={`${isRePosted ? 'text-iconGreen' : 'text-textGray'} group-hover:text-iconGreen text-sm`}>{count.rePosts}</span>
         </div>
         {/* LIKE */}
         <div className="flex items-center gap-2 cursor-pointer group">

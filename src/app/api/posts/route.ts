@@ -32,10 +32,14 @@ export async function GET(request: NextRequest) {
                     user: { select: { displayName: true, username: true, img: true } },
                     _count: { select: { likes: true, rePosts: true, comments: true } },
                     likes: { where: { userId }, select: { id: true } },
+                    rePosts: { where: { userId }, select: { id: true } },
+                    isSaved: { where: { userId }, select: { id: true } },
                 }
             },
             _count: { select: { likes: true, rePosts: true, comments: true } },
             likes: { where: { userId }, select: { id: true } },
+            rePosts: { where: { userId }, select: { id: true } },
+            isSaved: { where: { userId }, select: { id: true } },
         },
         take: limit,
         skip: (Number(page) - 1) * limit

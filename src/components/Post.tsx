@@ -25,6 +25,7 @@ type PostWithDetails = PostType & {
       comments: number;
     };
     likes: { id: number }[];
+    rePosts: { id: number }[];
   };
   _count: {
     likes: number;
@@ -32,6 +33,7 @@ type PostWithDetails = PostType & {
     comments: number;
   };
   likes: { id: number }[];
+  rePosts: { id: number }[];
 };
 
 const Post = ({ type, post }: { type?: "status" | "comment", post: PostWithDetails; }) => {
@@ -110,7 +112,7 @@ const Post = ({ type, post }: { type?: "status" | "comment", post: PostWithDetai
           {type === "status" && (
             <span className="text-textGray">8:41 PM · Dec 5, 2024</span>
           )}
-          <PostInteractions count={originalPost._count} isLiked={!!originalPost.likes.length} />
+          <PostInteractions count={originalPost._count} isLiked={!!originalPost.likes.length} isRePosted={!!originalPost.rePosts.length} />
         </div>
       </div>
     </div>
