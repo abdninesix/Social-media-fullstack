@@ -23,8 +23,15 @@ const Feed = async ({ userProfileId }: { userProfileId?: string }) => {
     where: whereCondition,
     include: {
       user: { select: { displayName: true, username: true, img: true } },
-      rePost: { include: { user: { select: { displayName: true, username: true, img: true } } } },
-      _count: { select: { likes: true, rePosts: true, comments: true } }
+      rePost: {
+        include: {
+          user: { select: { displayName: true, username: true, img: true } },
+          _count: { select: { likes: true, rePosts: true, comments: true } },
+          likes: { where: { userId }, select: { id: true } },
+        }
+      },
+      _count: { select: { likes: true, rePosts: true, comments: true } },
+      likes: { where: { userId }, select: { id: true } },
     },
     take: 10,
     skip: 0,

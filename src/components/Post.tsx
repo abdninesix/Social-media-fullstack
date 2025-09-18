@@ -19,15 +19,22 @@ type PostWithDetails = PostType & {
       username: string;
       img: string | null;
     };
+    _count: {
+      likes: number;
+      rePosts: number;
+      comments: number;
+    };
+    likes: { id: number }[];
   };
   _count: {
-    comments: number;
     likes: number;
     rePosts: number;
+    comments: number;
   };
-}
+  likes: { id: number }[];
+};
 
-const Post = ({ type, post }: { type?: "status" | "comment", post: PostWithDetails }) => {
+const Post = ({ type, post }: { type?: "status" | "comment", post: PostWithDetails; }) => {
 
   const originalPost = post.rePost || post;
 
@@ -103,7 +110,7 @@ const Post = ({ type, post }: { type?: "status" | "comment", post: PostWithDetai
           {type === "status" && (
             <span className="text-textGray">8:41 PM · Dec 5, 2024</span>
           )}
-          <PostInteractions count={post._count} />
+          <PostInteractions count={originalPost._count} isLiked={!!originalPost.likes.length} />
         </div>
       </div>
     </div>
