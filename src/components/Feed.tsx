@@ -23,7 +23,8 @@ const Feed = async ({ userProfileId }: { userProfileId?: string }) => {
     where: whereCondition,
     include: {
       user: { select: { displayName: true, username: true, img: true } },
-      rePost: { include: { user: { select: { displayName: true, username: true, img: true } } } }
+      rePost: { include: { user: { select: { displayName: true, username: true, img: true } } } },
+      _count: { select: { likes: true, rePosts: true, comments: true } }
     },
     take: 10,
     skip: 0,
@@ -35,7 +36,7 @@ const Feed = async ({ userProfileId }: { userProfileId?: string }) => {
       {/* This component fetches the first 3 posts on load */}
       {posts.map((post) => (
         <div key={post.id}>
-          <Post post={post}  />
+          <Post post={post} />
         </div>
       ))}
       {/* This component fetches the next 3 posts on scroll and continues to do so */}
