@@ -1,5 +1,6 @@
 import { prisma } from "@/client";
 import Feed from "@/components/Feed";
+import FollowButton from "@/components/FollowButton";
 import Image from "@/components/Image";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
@@ -49,9 +50,7 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
           <div className="w-9 h-9 flex items-center justify-center rounded-full border-[1px] border-gray-500 cursor-pointer">
             <Image path="sm/icons/message.svg" alt="more" w={20} h={20} />
           </div>
-          <button className="py-2 px-4 bg-white text-black font-bold rounded-full">
-            Follow
-          </button>
+          {userId && <FollowButton userId={user.id} isFollowed={!!user.followings.length} />}
         </div>
         {/* USER DETAILS */}
         <div className="p-4 flex flex-col gap-2">
@@ -75,7 +74,7 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
               </div>}
             <div className="flex items-center gap-2">
               <Image path="sm/icons/date.svg" alt="date" w={20} h={20} />
-              <span>Joined {new Date(user.createdAt.toString()).toLocaleDateString("en-US", {month:"long", year:"numeric"})}</span>
+              <span>Joined {new Date(user.createdAt.toString()).toLocaleDateString("en-US", { month: "long", year: "numeric" })}</span>
             </div>
           </div>
           {/* FOLLOWINGS & FOLLOWERS */}

@@ -1,7 +1,15 @@
 import Link from "next/link";
 import Image from "./Image";
+import { auth } from "@clerk/nextjs/server";
+import { prisma } from "@/client";
 
-const Recommendations = () => {
+const Recommendations = async () => {
+
+  const { userId } = await auth()
+  if (!userId) return;
+
+  const friendRecommendations = await prisma.user.findMany()
+
   return (
     <div className="p-4 rounded-2xl border-[1px] border-borderGray flex flex-col gap-4">
       {/* USER CARD */}
@@ -9,7 +17,7 @@ const Recommendations = () => {
         {/* IMAGE AND USER INFO */}
         <div className='flex items-center gap-2'>
           <div className='relative rounded-full overflow-hidden w-10 h-10'>
-            <Image path="sm/general/avatarNew.png" alt="Ahsan Raza" w={100} h={100} tr={true}/>
+            <Image path="sm/general/avatarNew.png" alt="Ahsan Raza" w={100} h={100} tr={true} />
           </div>
           <div className=''>
             <h1 className="text-md font-bold">Ahsan Raza</h1>
@@ -23,7 +31,7 @@ const Recommendations = () => {
         {/* IMAGE AND USER INFO */}
         <div className='flex items-center gap-2'>
           <div className='relative rounded-full overflow-hidden w-10 h-10'>
-            <Image path="sm/general/avatarNew.png" alt="Zoya Khan" w={100} h={100} tr={true}/>
+            <Image path="sm/general/avatarNew.png" alt="Zoya Khan" w={100} h={100} tr={true} />
           </div>
           <div className=''>
             <h1 className="text-md font-bold">Zoya Khan</h1>
@@ -37,7 +45,7 @@ const Recommendations = () => {
         {/* IMAGE AND USER INFO */}
         <div className='flex items-center gap-2'>
           <div className='relative rounded-full overflow-hidden w-10 h-10'>
-            <Image path="sm/general/avatarNew.png" alt="Hamza Qureshi" w={100} h={100} tr={true}/>
+            <Image path="sm/general/avatarNew.png" alt="Hamza Qureshi" w={100} h={100} tr={true} />
           </div>
           <div className=''>
             <h1 className="text-md font-bold">Hamza Qureshi</h1>
