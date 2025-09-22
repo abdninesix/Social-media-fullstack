@@ -32,11 +32,11 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
         <div className="relative w-full">
           {/* COVER */}
           <div className="w-full aspect-[3/1] relative">
-            <Image path="sm/general/coverNew.jpeg" alt="" w={600} h={200} tr={true} />
+            <Image path={user.cover || "sm/general/coverNew.jpeg"} alt="" w={600} h={200} tr={true} />
           </div>
           {/* AVATAR */}
           <div className="w-1/5 aspect-square rounded-full overflow-hidden border-4 border-black bg-gray-300 absolute left-4 -translate-y-1/2">
-            <Image path="sm/general/avatarNew.png" alt="" w={100} h={100} tr={true} />
+            <Image path={user.img || "sm/general/avatarNew.png"} alt="" w={100} h={100} tr={true} />
           </div>
         </div>
         <div className="flex w-full items-center justify-end gap-2 p-2">
@@ -60,31 +60,32 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
             <h1 className="text-2xl font-bold">{user.displayName}</h1>
             <span className="text-textGray text-sm">@{user.username}</span>
           </div>
-          <p>{user.bio}</p>
+          {user.bio && <p>{user.bio}</p>}
           {/* JOB & LOCATION & DATE */}
           <div className="flex gap-4 text-textGray text-[15px]">
-            <div className="flex items-center gap-2">
-              <Image
-                path="sm/icons/userLocation.svg"
-                alt="location"
-                w={20}
-                h={20}
-              />
-              <span>{user.location}</span>
-            </div>
+            {user.location &&
+              <div className="flex items-center gap-2">
+                <Image
+                  path="sm/icons/userLocation.svg"
+                  alt="location"
+                  w={20}
+                  h={20}
+                />
+                <span>{user.location}</span>
+              </div>}
             <div className="flex items-center gap-2">
               <Image path="sm/icons/date.svg" alt="date" w={20} h={20} />
-              <span>Joined May 2025</span>
+              <span>Joined {new Date(user.createdAt.toString()).toLocaleDateString("en-US", {month:"long", year:"numeric"})}</span>
             </div>
           </div>
           {/* FOLLOWINGS & FOLLOWERS */}
           <div className="flex gap-4">
             <div className="flex items-center gap-2">
-              <span className="font-bold">100</span>
+              <span className="font-bold">{user._count.followers}</span>
               <span className="text-textGray text-[15px]">Followers</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="font-bold">100</span>
+              <span className="font-bold">{user._count.followings}</span>
               <span className="text-textGray text-[15px]">Followings</span>
             </div>
           </div>

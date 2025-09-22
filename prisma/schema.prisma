@@ -14,9 +14,9 @@ datasource db {
 }
 
 model User {
-  id          String  @id
-  email       String  @unique
-  username    String  @unique
+  id          String       @id
+  email       String       @unique
+  username    String       @unique
   displayName String?
   bio         String?
   location    String?
@@ -24,12 +24,14 @@ model User {
   website     String?
   img         String?
   cover       String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
   //Relations
-  posts     Post[]
-  likes     Like[]
-  saves     SavedPosts[]
-  followers Follow[]     @relation("UserFollowers")
-  followings Follow[]     @relation("UserFollowings")
+  posts       Post[]
+  likes       Like[]
+  saves       SavedPosts[]
+  followers   Follow[]     @relation("UserFollowers")
+  followings  Follow[]     @relation("UserFollowings")
 }
 
 model Post {
@@ -90,5 +92,5 @@ model Follow {
   follower   User   @relation("UserFollowers", fields: [followerId], references: [id])
 
   followingId String
-  followings   User   @relation("UserFollowings", fields: [followingId], references: [id])
+  followings  User   @relation("UserFollowings", fields: [followingId], references: [id])
 }
