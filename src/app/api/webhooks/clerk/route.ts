@@ -16,8 +16,9 @@ export async function POST(req: NextRequest) {
         //Our action for database
         if (eventType === "user.created") {
             try {
-                await prisma.user.create.({
-                    id:
+                await prisma.user.create({
+                    id,
+                    username: JSON.parse(body).data.username
                 })
             } catch (error) {
                 console.log(error)
