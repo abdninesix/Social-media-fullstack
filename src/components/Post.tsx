@@ -105,7 +105,7 @@ const Post = ({ type, post }: { type?: "status" | "comment", post: PostWithDetai
             <PostInfo />
           </div>
           {/* TEXT & MEDIA */}
-          <Link href={`/abdninesix/status/123`}>
+          <Link href={`/${originalPost.user.username}/status/123`}>
             <p className={`${type === "status" && "text-lg"}`}>{originalPost.desc}</p>
           </Link>
           {originalPost.img && (
