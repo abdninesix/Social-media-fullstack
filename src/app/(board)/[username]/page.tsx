@@ -1,13 +1,19 @@
 import { prisma } from "@/client";
 import Feed from "@/components/Feed";
 import Image from "@/components/Image";
+import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 const UserPage = async ({ params }: { params: { username: string } }) => {
 
-  const { username } = params
-  const user = await prisma.user.findUnique({ where: { username: username } })
+  const { userId } = await auth()
+
+  const { username } = await params
+  const user = await prisma.user.findUnique({
+    where: { username: username },
+    include: { _count: { select: { followers: true, followings: true } }, followings: userId ? { where: { followerId: userId } } : undefined }
+  })
 
   if (!user) return notFound()
 

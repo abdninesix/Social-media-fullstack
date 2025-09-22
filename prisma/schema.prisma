@@ -29,7 +29,7 @@ model User {
   likes     Like[]
   saves     SavedPosts[]
   followers Follow[]     @relation("UserFollowers")
-  following Follow[]     @relation("UserFollowing")
+  followings Follow[]     @relation("UserFollowings")
 }
 
 model Post {
@@ -90,5 +90,5 @@ model Follow {
   follower   User   @relation("UserFollowers", fields: [followerId], references: [id])
 
   followingId String
-  following   User   @relation("UserFollowing", fields: [followingId], references: [id])
+  followings   User   @relation("UserFollowings", fields: [followingId], references: [id])
 }

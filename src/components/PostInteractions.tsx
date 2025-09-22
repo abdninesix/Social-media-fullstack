@@ -1,6 +1,6 @@
 "use client";
 
-const PostInteractions = ({ count, isLiked, isRePosted }: { count: { likes: number; comments: number; rePosts: number }, isLiked: boolean, isRePosted: boolean }) => {
+const PostInteractions = ({ count, isLiked, isRePosted, isSaved }: { count: { likes: number; comments: number; rePosts: number }, isLiked: boolean, isRePosted: boolean, isSaved: boolean }) => {
   return (
     <div className="flex items-center justify-between gap-4 lg:gap-16 my-2 text-textGray">
       <div className="flex items-center justify-between flex-1">
@@ -59,7 +59,7 @@ const PostInteractions = ({ count, isLiked, isRePosted }: { count: { likes: numb
             viewBox="0 0 24 24"
           >
             <path
-              className="fill-textGray group-hover:fill-iconBlue"
+              className={`${isSaved ? 'fill-iconBlue' : 'fill-textGray'} group-hover:fill-iconBlue`}
               d="M4 4.5C4 3.12 5.119 2 6.5 2h11C18.881 2 20 3.12 20 4.5v18.44l-8-5.71-8 5.71V4.5zM6.5 4c-.276 0-.5.22-.5.5v14.56l6-4.29 6 4.29V4.5c0-.28-.224-.5-.5-.5h-11z"
             />
           </svg>
@@ -72,7 +72,7 @@ const PostInteractions = ({ count, isLiked, isRePosted }: { count: { likes: numb
             viewBox="0 0 24 24"
           >
             <path
-              className="fill-textGray group-hover:fill-iconBlue"
+              className='fill-textGray group-hover:fill-iconBlue'
               d="M12 2.59l5.7 5.7-1.41 1.42L13 6.41V16h-2V6.41l-3.3 3.3-1.41-1.42L12 2.59zM21 15l-.02 3.51c0 1.38-1.12 2.49-2.5 2.49H5.5C4.11 21 3 19.88 3 18.5V15h2v3.5c0 .28.22.5.5.5h12.98c.28 0 .5-.22.5-.5L19 15h2z"
             />
           </svg>

@@ -33,13 +33,13 @@ export async function GET(request: NextRequest) {
                     _count: { select: { likes: true, rePosts: true, comments: true } },
                     likes: { where: { userId }, select: { id: true } },
                     rePosts: { where: { userId }, select: { id: true } },
-                    isSaved: { where: { userId }, select: { id: true } },
+                    saves: { where: { userId }, select: { id: true } },
                 }
             },
             _count: { select: { likes: true, rePosts: true, comments: true } },
             likes: { where: { userId }, select: { id: true } },
             rePosts: { where: { userId }, select: { id: true } },
-            isSaved: { where: { userId }, select: { id: true } },
+            saves: { where: { userId }, select: { id: true } },
         },
         take: limit,
         skip: (Number(page) - 1) * limit
@@ -49,7 +49,7 @@ export async function GET(request: NextRequest) {
 
     const hasMore = Number(page) * limit < totalPosts;
 
-    // await new Promise(resolve => setTimeout(resolve, 3000));
+    await new Promise(resolve => setTimeout(resolve, 3000));
 
     return Response.json({ posts, hasMore });
 }

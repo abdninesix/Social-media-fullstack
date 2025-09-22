@@ -29,11 +29,14 @@ const Feed = async ({ userProfileId }: { userProfileId?: string }) => {
           _count: { select: { likes: true, rePosts: true, comments: true } },
           likes: { where: { userId }, select: { id: true } },
           rePosts: { where: { userId }, select: { id: true } },
+          saves: { where: { userId }, select: { id: true } },
+
         }
       },
       _count: { select: { likes: true, rePosts: true, comments: true } },
       likes: { where: { userId }, select: { id: true } },
       rePosts: { where: { userId }, select: { id: true } },
+      saves: { where: { userId }, select: { id: true } },
     },
     take: 10,
     skip: 0,
