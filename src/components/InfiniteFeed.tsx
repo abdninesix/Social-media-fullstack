@@ -19,13 +19,13 @@ const InfiniteFeed = ({ userProfileId }: { userProfileId?: string }) => {
         getNextPageParam: (lastPage, pages) => lastPage.hasMore ? pages.length + 2 : undefined
     })
 
-    if (error) return "Something went wrong"
-    if (status === "pending") return "Loading"
+    if (error) return <p className='p-4 text-center'>Something went wrong</p>
+    if (status === "pending") return <p className='p-4 text-center'>Loading</p>
 
     const allPosts = data?.pages?.flatMap(page => page.posts) || []
 
     return (
-        <InfiniteScroll dataLength={allPosts.length} next={fetchNextPage} hasMore={!!hasNextPage} loader={<p>Posts are loading</p>} endMessage={<p>No more posts</p>}>
+        <InfiniteScroll dataLength={allPosts.length} next={fetchNextPage} hasMore={!!hasNextPage} loader={<p className='p-4 text-center'>Posts are loading</p>} endMessage={<p className='p-4 text-center'>No more posts</p>}>
             {allPosts.map((post) => (<Post key={post.id} post={post} />))}
         </InfiniteScroll>
     )
