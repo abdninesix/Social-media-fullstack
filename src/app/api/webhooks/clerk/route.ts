@@ -24,6 +24,18 @@ export async function POST(req: NextRequest) {
                         email: user.email_addresses[0].email_address || "",
                     }
                 })
+                return new Response('User created', { status: 200 })
+            } catch (error) {
+                console.log(error)
+                return new Response('Error creating the user', { status: 500 })
+            }
+        }
+
+        if (eventType === "user.deleted") {
+            try {
+                const user = evt.data
+                await prisma.user.delete({where: {id: user.id}})
+                return new Response('User deleted', { status: 200 })
             } catch (error) {
                 console.log(error)
                 return new Response('Error creating the user', { status: 500 })
