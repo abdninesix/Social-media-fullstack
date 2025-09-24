@@ -35,8 +35,8 @@ const StatusPage = async ({ params }: { params: Promise<{ username: string, post
   if (!post) return notFound()
 
   return (
-    <div className="">
-      <div className="flex items-center gap-8 sticky top-0 backdrop-blur-md p-4 z-10 bg-[#00000084]">
+    <div>
+      <div className="flex items-center gap-8 sticky top-0 backdrop-blur-md p-4 z-10">
         <Link href="/">
           <Image path="sm/icons/back.svg" alt="back" w={24} h={24} />
         </Link>

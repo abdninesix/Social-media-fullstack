@@ -5,8 +5,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 import QueryProvider from "@/providers/QueryProvider";
 
 export const metadata: Metadata = {
-  title: 'Social Website',
-  description: 'Next.js social media website',
+  title: 'SocialApp',
+  description: 'Next.js social media platform',
   icons: {
     icon: "/favicon.svg"
   }
