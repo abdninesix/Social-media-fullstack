@@ -2,6 +2,7 @@
 
 import { auth } from "@clerk/nextjs/server"
 import { prisma } from "./client"
+import z from "zod"
 
 export const likePost = async (postId: number) => {
 
@@ -60,4 +61,9 @@ export const addComment = async (prevState: { success: boolean, error: boolean }
 
     const postId = formData.get("postId")
     const desc = formData.get("desc")
+
+    const Comment = z.object({
+        parentPostId: z.number(),
+        desc: z.string(),
+    })
 }
