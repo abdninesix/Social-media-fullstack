@@ -67,13 +67,13 @@ const menuList = [
 
 const LeftBar = () => {
   return (
-    <div className="h-screen sticky top-0 flex flex-col justify-between pt-2 pb-8">
+    <div className="h-screen sticky top-0 flex gap-4 flex-col justify-between pt-2">
       {/* LOGO MENU BUTTON */}
       <div className="flex flex-col gap-4 text-lg items-center xxl:items-start">
         {/* LOGO */}
-        <Link href="/" className="p-2 flex gap-2 font-bold">
+        <Link href="/" className="p-3 flex items-center gap-5">
           <Image path="sm/icons/siteLogo.svg" alt="logo" w={24} h={24} />
-          <span className="hidden xxl:block text-xs font-extralight text-blue-400">developed by Abdullah</span>
+          <span className="hidden xxl:inline text-iconBlue">SocialApp</span>
         </Link>
         {/* MENU LIST */}
         <div className="flex flex-col gap-4">
