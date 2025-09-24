@@ -115,6 +115,7 @@ const Post = ({ type, post }: { type?: "status" | "comment", post: PostWithDetai
             <span className="text-textGray">8:41 PM · Dec 5, 2024</span>
           )}
           <PostInteractions
+            postId={originalPost.id}
             count={originalPost._count}
             isLiked={!!originalPost.likes.length}
             isRePosted={!!originalPost.rePosts.length}
