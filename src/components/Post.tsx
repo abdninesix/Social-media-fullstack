@@ -116,6 +116,7 @@ const Post = ({ type, post }: { type?: "status" | "comment", post: PostWithDetai
           )}
           <PostInteractions
             postId={originalPost.id}
+            postUsername={originalPost.user.username}
             count={originalPost._count}
             isLiked={!!originalPost.likes.length}
             isRePosted={!!originalPost.rePosts.length}

@@ -1,9 +1,10 @@
 "use client";
 
 import { likePost, rePost, savePost } from "@/action";
+import Link from "next/link";
 import { useOptimistic, useState } from "react";
 
-const PostInteractions = ({ postId, count, isLiked, isRePosted, isSaved }: { postId: number, count: { likes: number; comments: number; rePosts: number }, isLiked: boolean, isRePosted: boolean, isSaved: boolean }) => {
+const PostInteractions = ({ postId, postUsername, count, isLiked, isRePosted, isSaved }: { postId: number, postUsername: string, count: { likes: number; comments: number; rePosts: number }, isLiked: boolean, isRePosted: boolean, isSaved: boolean }) => {
 
   const [state, setState] = useState({
     likes: count.likes, isLiked: isLiked,
@@ -46,7 +47,7 @@ const PostInteractions = ({ postId, count, isLiked, isRePosted, isSaved }: { pos
     <div className="flex items-center justify-between gap-4 lg:gap-16 my-2 text-textGray">
       <div className="flex items-center justify-between flex-1">
         {/* COMMENTS */}
-        <div className="flex items-center gap-2 cursor-pointer group">
+        <Link href={`/${postUsername}/status/${postId}`} className="flex items-center gap-2 cursor-pointer group">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -59,7 +60,7 @@ const PostInteractions = ({ postId, count, isLiked, isRePosted, isSaved }: { pos
             />
           </svg>
           <span className="group-hover:text-iconBlue text-sm">{count.comments}</span>
-        </div>
+        </Link>
         {/* REPOST */}
         <form action={rePostAction}>
           <button className="flex items-center gap-2 cursor-pointer group">
@@ -98,7 +99,7 @@ const PostInteractions = ({ postId, count, isLiked, isRePosted, isSaved }: { pos
       <div className="flex items-center gap-2">
         {/* SAVE */}
         <form action={saveAciton}>
-          <button className="cursor-pointer group">
+          <button className="flex items-center cursor-pointer group">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
