@@ -19,3 +19,37 @@ export const likePost = async (postId: number) => {
         })
     }
 }
+
+export const rePost = async (postId: number) => {
+
+    const { userId } = await auth()
+    if (!userId) return
+
+    const existingRePost= await prisma.post.findFirst({
+        where: { rePostId: postId, userId: userId }
+    })
+    if(existingRePost){
+        await prisma.post.delete({ where: { id: existingRePost.id } })
+    }else{
+        await prisma.post.create({
+            data: { userId, rePostId: postId }
+        })
+    }
+}
+
+export const savePost = async (postId: number) => {
+
+    const { userId } = await auth()
+    if (!userId) return
+
+    const existingSave= await prisma.savedPosts.findFirst({
+        where: { postId: postId, userId: userId }
+    })
+    if(existingSave){
+        await prisma.savedPosts.delete({ where: { id: existingSave.id } })
+    }else{
+        await prisma.savedPosts.create({
+            data: { userId, postId }
+        })
+    }
+}
