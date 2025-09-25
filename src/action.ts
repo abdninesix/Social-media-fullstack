@@ -140,12 +140,14 @@ export const addPost = async (prevState: { success: boolean, error: boolean }, f
     if (!validatedFields.success) return { success: false, error: true }
 
     let img = "";
+    let imgHeight = 0;
     let video = "";
 
     if (file.size) {
         const result: UploadResponse = await uploadFile(file);
         if (result.fileType === "image") {
             img = result.filePath;
+            imgHeight = result.height;
         } else {
             video = result.filePath;
         }
@@ -156,8 +158,12 @@ export const addPost = async (prevState: { success: boolean, error: boolean }, f
             data: {
                 ...validatedFields.data,
                 userId,
+                img,
+                imgHeight,
+                video,
             }
-        })
+        });
+        revalidatePath("/")
         return { success: true, error: false }
     } catch (error) {
         console.log(error)

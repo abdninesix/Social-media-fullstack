@@ -152,9 +152,10 @@ const Share = () => {
               className="cursor-pointer"
             />
           </div>
-          <button className="bg-white text-black font-bold rounded-full py-2 px-4">
-            Post
+          <button disabled={isPending} className="bg-white text-black font-bold rounded-full py-2 px-4 disabled:opacity-75">
+            {isPending ? "Posting" : "Post"}
           </button>
+          {state.error && <span className="text-red-500 text-center text-sm p-4">Something went wrong</span>}
         </div>
       </div>
     </form>
