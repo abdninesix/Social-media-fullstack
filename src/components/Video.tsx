@@ -17,9 +17,10 @@ const Video = ({ path, className }: VideoTypes) => {
       className={className}
       transformation={[
         { width: "1920", height: "1080", quality: 90 },
-        { raw: "l-text,i-Abdullah,fs-100,co-white,l-end" },
+        { raw: "l-text,fs-100,co-white,l-end" },
       ]}
       controls
+      controlsList="nodownload"
     />
   );
 };

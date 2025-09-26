@@ -107,12 +107,15 @@ const Post = ({ type, post }: { type?: "status" | "comment", post: PostWithDetai
           {/* TEXT & MEDIA */}
           <Link href={`/${originalPost.user.username}/status/${originalPost.id}`}>
             <p className={`${type === "status" && "text-lg"}`}>{originalPost.desc}</p>
+            {originalPost.img && (
+              <Image path={originalPost.img} alt="" w={600} h={600} />
+            )}
+            {originalPost.video && (
+              <Video path={originalPost.video}  />
+            )}
           </Link>
-          {originalPost.img && (
-            <Image path={originalPost.img} alt="" w={600} h={600} />
-          )}
           {type === "status" && (
-            <span className="text-textGray">8:41 PM · Dec 5, 2024</span>
+            <span className="text-textGray">{originalPost.createdAt.toLocaleTimeString()} · {originalPost.createdAt.toDateString()}</span>
           )}
           <PostInteractions
             postId={originalPost.id}

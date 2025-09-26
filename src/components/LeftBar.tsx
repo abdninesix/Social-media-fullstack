@@ -1,7 +1,9 @@
+"use client"
+
 import Link from "next/link";
 import Image from "./Image";
 import { Bookmark, Community, Explore, Home, Jobs, Message, More, Notification, Premium, Profile } from "./svg";
-import { UserButton } from "@clerk/nextjs";
+import { UserButton, useUser } from "@clerk/nextjs";
 
 const menuList = [
   {
@@ -67,6 +69,9 @@ const menuList = [
 ];
 
 const LeftBar = () => {
+
+  const { user } = useUser();
+
   return (
     <div className="h-screen sticky top-0 flex gap-4 flex-col justify-between pt-2">
       {/* LOGO MENU BUTTON */}
@@ -113,12 +118,12 @@ const LeftBar = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="size-10 relative rounded-full overflow-hidden">
-            <UserButton />
-            {/* <Image path="sm/general/avatarNew.png" alt="Abdullah" w={100} h={100} tr={true} /> */}
+            {/* <UserButton /> */}
+            <Image src={user?.imageUrl || "sm/general/avatarNew.png"} alt="avatar" w={100} h={100} tr={true} />
           </div>
           <div className="hidden xxl:flex flex-col">
-            <span className="font-bold">Abdullah</span>
-            <span className="text-sm text-textGray">@abdninesix</span>
+            <span className="font-bold">{user?.fullName}</span>
+            <span className="text-sm text-textGray">@{user?.username}</span>
           </div>
         </div>
         <div className="hidden xxl:block cursor-pointer font-bold">...</div>
