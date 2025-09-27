@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useActionState, useState } from "react";
+import React, { useActionState, useEffect, useRef, useState } from "react";
 import Image from "./Image";
 import NextImage from "next/image";
-import { shareAction } from "@/actions";
 import ImageEditor from "./ImageEditor";
 import { addPost } from "@/action";
 
@@ -29,8 +28,19 @@ const Share = () => {
 
   const [state, formAction, isPending] = useActionState(addPost, { success: false, error: false })
 
+  const formRef = useRef<HTMLFormElement | null>(null);
+
+  useEffect(() => {
+    if (state.success) {
+      formRef.current?.reset();
+      setMedia(null);
+      setSettings({ type: "original", sensitive: false });
+    }
+  }, [state]);
+
   return (
     <form
+      ref={formRef}
       className="p-4 flex gap-4"
       // action={(formData) => shareAction(formData, settings)}
       action={formAction}
