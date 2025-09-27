@@ -7,6 +7,23 @@ import { revalidatePath } from "next/cache"
 import { UploadResponse } from "imagekit/dist/libs/interfaces"
 import { imagekit } from "./utils"
 
+export const followUser = async (targetUserId: string) => {
+
+    const { userId } = await auth()
+    if (!userId) return
+
+    const existingFollow = await prisma.follow.findFirst({
+        where: { followingId: targetUserId, followerId: userId }
+    })
+    if (existingFollow) {
+        await prisma.follow.delete({ where: { id: existingFollow.id } })
+    } else {
+        await prisma.follow.create({
+            data: { followingId: targetUserId, followerId: userId }
+        })
+    }
+}
+
 export const likePost = async (postId: number) => {
 
     const { userId } = await auth()
