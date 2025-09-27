@@ -19,11 +19,16 @@ if (!urlEndpoint) {
 }
 
 const Image = ({ src, path, w, h, alt, className, tr }: ImageType) => {
+
+  const normalizedPath = path ? (path.startsWith("/") ? path : `/${path}`) : undefined;
+  console.log("Final IKImage props → src:", src, "path:", normalizedPath);
+  console.log("Full URL →", `${urlEndpoint}${path}`);
+
+
   return (
     <IKImage
       urlEndpoint={urlEndpoint}
-      src={src}
-      path={path}
+      {...(src ? { src } : { path: normalizedPath })}
       {...(tr
         ? { transformation: [{ width: `${w}`, height: `${h}` }] }
         : { width: w, height: h })}
