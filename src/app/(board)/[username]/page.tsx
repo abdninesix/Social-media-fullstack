@@ -81,11 +81,11 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
           <div className="flex gap-4">
             <div className="flex items-center gap-2">
               <span className="font-bold">{user._count.followers}</span>
-              <span className="text-textGray text-[15px]">Followings</span>
+              <span className="text-textGray text-[15px]">Followers</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="font-bold">{user._count.followings}</span>
-              <span className="text-textGray text-[15px]">Followers</span>
+              <span className="text-textGray text-[15px]">Followings</span>
             </div>
           </div>
         </div>
