@@ -163,10 +163,10 @@ export const addPost = async (prevState: { success: boolean, error: boolean }, f
     if (file.size) {
         const result: UploadResponse = await uploadFile(file);
         if (result.fileType === "image") {
-            img = result.filePath;
+            img = result.filePath.replace(/^\/+/, "");
             imgHeight = result.height;
         } else {
-            video = result.filePath;
+            video = result.filePath.replace(/^\/+/, "");
         }
     }
 
