@@ -50,7 +50,7 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
           <div className="w-9 h-9 flex items-center justify-center rounded-full border-[1px] border-gray-500 cursor-pointer">
             <Image path="sm/icons/message.svg" alt="more" w={20} h={20} />
           </div>
-          {userId && <FollowButton userId={user.id} isFollowed={!!user.followings.length} />}
+          {userId && userId !== user.id && <FollowButton userId={user.id} isFollowed={!!user.followings.length} />}
         </div>
         {/* USER DETAILS */}
         <div className="p-4 flex flex-col gap-2">
@@ -81,11 +81,11 @@ const UserPage = async ({ params }: { params: { username: string } }) => {
           <div className="flex gap-4">
             <div className="flex items-center gap-2">
               <span className="font-bold">{user._count.followers}</span>
-              <span className="text-textGray text-[15px]">Followers</span>
+              <span className="text-textGray text-[15px]">Followings</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="font-bold">{user._count.followings}</span>
-              <span className="text-textGray text-[15px]">Followings</span>
+              <span className="text-textGray text-[15px]">Followers</span>
             </div>
           </div>
         </div>

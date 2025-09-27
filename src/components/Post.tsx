@@ -1,4 +1,3 @@
-import { imagekit } from "@/utils";
 import Image from "./Image";
 import PostInfo from "./PostInfo";
 import PostInteractions from "./PostInteractions";
@@ -81,8 +80,7 @@ const Post = ({ type, post }: { type?: "status" | "comment", post: PostWithDetai
                 />
               </div>
               <div
-                className={`flex items-center gap-2 flex-wrap ${type === "status" && "!items-start"
-                  }`}
+                className="flex items-center gap-2 flex-wrap"
               >
                 {/* AVATAR */}
                 <div
@@ -93,19 +91,17 @@ const Post = ({ type, post }: { type?: "status" | "comment", post: PostWithDetai
                 </div>
                 <h1 className="text-md font-bold">{originalPost.user.displayName}</h1>
                 <span
-                  className={`text-textGray ${type === "status" && "text-sm"}`}
+                  className="text-textGray"
                 >
                   @{originalPost.user.username}
                 </span>
-                {type !== "status" && (
-                  <span className="text-textGray">{format(originalPost.createdAt)}</span>
-                )}
+                <span className="text-textGray text-sm">{format(originalPost.createdAt)}</span>
               </div>
             </Link>
             <PostInfo />
           </div>
           {/* TEXT & MEDIA */}
-          <Link href={`/${originalPost.user.username}/status/${originalPost.id}`}>
+          <Link href={`/${originalPost.user.username}/status/${originalPost.id}`} className="relative">
             <p className={`${type === "status" && "text-lg"}`}>{originalPost.desc}</p>
             {originalPost.img && (
               <Image path={originalPost.img} alt="" w={600} h={originalPost.imgHeight || 600} />
@@ -113,6 +109,10 @@ const Post = ({ type, post }: { type?: "status" | "comment", post: PostWithDetai
             {originalPost.video && (
               <Video path={originalPost.video} />
             )}
+            {originalPost.isSensitive &&
+              <div className="absolute flex items-center justify-center top-0 size-full bg-black/90 z-20">
+                <span className="w-fit p-2 rounded-full bg-red-500 text-white">Sensitive Content</span>
+              </div>}
           </Link>
           {type === "status" && (
             <span className="text-textGray">{originalPost.createdAt.toLocaleTimeString()} · {originalPost.createdAt.toDateString()}</span>
