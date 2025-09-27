@@ -3,7 +3,8 @@
 import Link from "next/link";
 import Image from "./Image";
 import { Bookmark, Community, Explore, Home, Jobs, Message, More, Notification, Premium, Profile } from "./svg";
-import { UserButton, useUser } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
+import Socket from "./Socket";
 
 const menuList = [
   {
@@ -119,7 +120,7 @@ const LeftBar = () => {
         <div className="flex items-center gap-2">
           <div className="size-10 relative rounded-full overflow-hidden">
             {/* <UserButton /> */}
-            <Image src={user?.imageUrl || "sm/general/avatarNew.png"} alt="avatar" w={100} h={100} tr={true} />
+            <Image src={user?.imageUrl} path={user?.imageUrl ? "" : "sm/general/avatarNew.png"} alt="avatar" w={100} h={100} tr={true} />
           </div>
           <div className="hidden xxl:flex flex-col">
             <span className="font-bold">{user?.fullName}</span>
@@ -128,6 +129,7 @@ const LeftBar = () => {
         </div>
         <div className="hidden xxl:block cursor-pointer font-bold">...</div>
       </div>
+      <Socket />
     </div>
   );
 };
