@@ -12,7 +12,7 @@ const Homepage = async () => {
         <Link className="hidden pb-3 md:flex items-center" href="/">Market</Link>
         <Link className="hidden pb-3 md:flex items-center" href="/">Communities</Link>
         <Link className="hidden pb-3 md:flex items-center" href="/">Groups</Link>
-        <Link className="hidden pb-3 md:flex items-center" href="/">MongoDB</Link>
+        <Link className="hidden pb-3 md:flex items-center" href="/">Others</Link>
       </div>
       <Share />
       <Feed />
