@@ -10,8 +10,8 @@ const Homepage = async () => {
         <Link className="pb-3 flex items-center border-b-4 border-iconBlue" href="/">For you</Link>
         <Link className="pb-3 flex items-center" href="/">Following</Link>
         <Link className="hidden pb-3 md:flex items-center" href="/">Market</Link>
-        <Link className="hidden pb-3 md:flex items-center" href="/">React.js</Link>
-        <Link className="hidden pb-3 md:flex items-center" href="/">Tailwind</Link>
+        <Link className="hidden pb-3 md:flex items-center" href="/">Communities</Link>
+        <Link className="hidden pb-3 md:flex items-center" href="/">Groups</Link>
         <Link className="hidden pb-3 md:flex items-center" href="/">MongoDB</Link>
       </div>
       <Share />
