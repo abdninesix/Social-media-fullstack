@@ -22,6 +22,7 @@ export async function POST(req: NextRequest) {
                         id: user.id,
                         username: user.username || "",
                         email: user.email_addresses[0].email_address || "",
+                        img: user.image_url || "",
                     }
                 })
                 return new Response('User created', { status: 200 })
