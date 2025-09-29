@@ -78,10 +78,10 @@ const Post = ({ type, post }: { type?: "status" | "comment", post: PostWithDetai
           <Link href={`/${originalPost.user.username}/status/${originalPost.id}`}>
             <p className={`${type === "status" && "text-lg"}`}>{originalPost.desc}</p>
             {originalPost.img && (
-              <Image path={originalPost.img} alt="" w={600} h={originalPost.imgHeight || 600} className={originalPost.isSensitive ? "blur-md" : ""} />
+              <Image path={originalPost.img} alt="" w={600} h={originalPost.imgHeight || 600} />
             )}
             {originalPost.video && (
-              <Video path={originalPost.video} className={originalPost.isSensitive ? "blur-sm" : ""} />
+              <Video path={originalPost.video} />
             )}
           </Link>
           {type === "status" && (

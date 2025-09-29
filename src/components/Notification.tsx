@@ -5,6 +5,8 @@ import { Notifications } from './svg'
 import { socket } from '@/socket'
 import Link from 'next/link'
 import { Span } from 'next/dist/trace'
+import { Router } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 type NotificationType = {
     id: string,
@@ -14,6 +16,8 @@ type NotificationType = {
 }
 
 const Notification = () => {
+
+    const router = useRouter();
 
     const [notifications, setNotifications] = useState<NotificationType[]>([])
     const [open, setOpen] = useState(false)
@@ -31,6 +35,11 @@ const Notification = () => {
         setNotifications([])
     }
 
+    const handleClick = (notification : NotificationType) => {
+        setOpen(prev => !prev)
+        router.push(notification.link)
+    }
+
     return (
         <div className='relative'>
             <div className="p-2 rounded-full hover:bg-inputGray text-white flex items-center gap-4 cursor-pointer" onClick={() => setOpen(prev => !prev)}>
@@ -43,11 +52,11 @@ const Notification = () => {
             {open && (<div className='absolute left-full top-1/2 p-4 rounded-lg rounded-tl-none shadow-lg bg-white text-black flex flex-col gap-4 w-max'>
                 <h1 className='text-xl text-textGray'>Notifications</h1>
                 {notifications.map((n) => (
-                    <Link href={n.link} className='cursor-pointer hover:text-iconBlue' key={n.id}>
+                    <div className='cursor-pointer hover:text-iconBlue' key={n.id} onClick={() => handleClick(n)}>
                         <b>{n.senderUsername}</b>
                         {" "}
                         {n.type === "like" ? "liked your post" : n.type === "comment" ? "replied to your post" : n.type === "rePost" ? "repost your post" : "followed you"}
-                    </Link>
+                    </div>
                 ))}
                 <span onClick={(reset)} className={`text-center p-2 rounded-md ${notifications.length > 0 ? "bg-black text-sm text-textGrayLight cursor-pointer" : "text-base text-iconBlue"}`}>{notifications.length === 0 ? "You're all caught up!" : "Mark as read"}</span>
             </div>)}
