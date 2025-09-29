@@ -36,7 +36,7 @@ const Notification = () => {
             <div className="p-2 rounded-full hover:bg-inputGray text-white flex items-center gap-4 cursor-pointer" onClick={() => setOpen(prev => !prev)}>
                 <div className="size-8 relative">
                     <Notifications />
-                    <div className='absolute -right-3 -top-3 bg-iconBlue rounded-full size-6 p-1 text-sm flex items-center justify-center'>{notifications.length}</div>
+                    {notifications.length > 0 && <div className='absolute -right-3 -top-3 bg-iconBlue rounded-full size-6 p-1 text-sm flex items-center justify-center'>{notifications.length}</div>}
                 </div>
                 <span className="hidden xxl:inline">Notifications</span>
             </div>

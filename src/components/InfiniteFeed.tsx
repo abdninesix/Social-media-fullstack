@@ -20,7 +20,7 @@ const InfiniteFeed = ({ userProfileId }: { userProfileId?: string }) => {
     })
 
     if (error) return <p className='p-4 text-center'>Something went wrong</p>
-    if (status === "pending") return <p className='p-4 text-center'>Loading</p>
+    if (status === "pending") return <p className='p-4 text-center'>Posts are loading</p>
 
     const allPosts = data?.pages?.flatMap(page => page.posts) || []
 
