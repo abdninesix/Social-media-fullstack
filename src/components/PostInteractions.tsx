@@ -31,7 +31,7 @@ const PostInteractions = ({ postId, postUsername, count, isLiked, isRePosted, is
 
   const likeAction = async () => {
     if (!user) return
-    if (optimisticCount.isLiked) {
+    if (!optimisticCount.isLiked) {
       socket.emit("sendNotification", { receiverUsername: postUsername, data: { senderUsername: user?.username, type: "like", link: `/${postUsername}/status/${postId}` } })
     }
     addOptimisticCount("like")
@@ -40,6 +40,10 @@ const PostInteractions = ({ postId, postUsername, count, isLiked, isRePosted, is
   }
 
   const rePostAction = async () => {
+    if (!user) return
+    if (!optimisticCount.isRePosted) {
+      socket.emit("sendNotification", { receiverUsername: postUsername, data: { senderUsername: user?.username, type: "rePost", link: `/${postUsername}/status/${postId}` } })
+    }
     addOptimisticCount("rePost")
     await rePost(postId)
     setState(prev => { return { ...prev, rePosts: prev.isRePosted ? prev.rePosts - 1 : prev.rePosts + 1, isRePosted: !prev.isRePosted } })

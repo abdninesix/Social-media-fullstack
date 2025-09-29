@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { Notifications } from './svg'
 import { socket } from '@/socket'
+import Link from 'next/link'
 
 type NotificationType = {
     id: string,
@@ -20,6 +21,9 @@ const Notification = () => {
         socket.on("getNotification", (data: NotificationType) => {
             setNotifications((prev) => [...prev, data])
         })
+        return () => {
+            socket.off("getNotification")
+        }
     }, [])
 
     return (
@@ -30,12 +34,12 @@ const Notification = () => {
             </div>
             {open && (<div className='absolute -right-full p-4 rounded-lg shadow-lg bg-white text-black flex flex-col gap-4 w-max'>
                 <h1 className='text-xl text-textGray'>Notifications</h1>
-                {notifications.map(n => (
-                    <div className='cursor-pointer' key={n.id}>
+                {notifications.map((n) => (
+                    <Link href={n.link} className='cursor-pointer' key={n.id}>
                         <b>{n.senderUsername}</b>
                         {" "}
                         {n.type === "like" ? "liked your post" : n.type === "comment" ? "replied to your post" : n.type === "rePost" ? "repost your post" : "followed you"}
-                    </div>
+                    </Link>
                 ))}
             </div>)}
         </div>
