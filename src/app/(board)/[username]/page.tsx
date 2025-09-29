@@ -51,8 +51,8 @@ const UserPage = async ({ params }: { params: Promise<{ username: string }> }) =
           <div className="w-9 h-9 flex items-center justify-center rounded-full border-[1px] border-gray-500 cursor-pointer">
             <Image path="sm/icons/message.svg" alt="more" w={20} h={20} />
           </div>
-          {userId && userId !== user.id && <FollowButton userId={user.id} isFollowed={!!user.followings.length} />}
-          <FollowButton userId={user.id} isFollowed={!!user.followings.length} />
+          {userId && userId !== user.id && <FollowButton userId={user.id} username={user.username} isFollowed={!!user.followings.length} />}
+          <FollowButton userId={user.id} username={user.username} isFollowed={!!user.followings.length} />
         </div>
         {/* USER DETAILS */}
         <div className="p-4 flex flex-col gap-2">

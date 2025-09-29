@@ -1,9 +1,10 @@
 "use client"
 
 import { followUser } from '@/action'
-import React, { useOptimistic, useState } from 'react'
+import { socket } from '@/socket'
+import React, { useEffect, useOptimistic, useState } from 'react'
 
-const FollowButton = ({ userId, isFollowed }: { userId: string, isFollowed: boolean }) => {
+const FollowButton = ({ userId, username, isFollowed }: { userId: string, username: string, isFollowed: boolean }) => {
 
     const [state, setState] = useState(isFollowed)
 
@@ -14,6 +15,12 @@ const FollowButton = ({ userId, isFollowed }: { userId: string, isFollowed: bool
     }
 
     const [optimisticFollow, switchOptimisticFollow] = useOptimistic(state, (prev) => { return !prev })
+
+    useEffect(() => {
+        if (state) {
+            socket.emit("sendNotification", { receiverUsername: username, data: { senderUsername: username, type: "follow", link: `/${username}` } })
+        }
+    }, [state, username, isFollowed])
 
     return (
         <form action={followAction}>
