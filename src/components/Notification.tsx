@@ -55,7 +55,7 @@ const Notification = () => {
                     <div className='cursor-pointer hover:text-iconBlue' key={n.id} onClick={() => handleClick(n)}>
                         <b>{n.senderUsername}</b>
                         {" "}
-                        {n.type === "like" ? "liked your post" : n.type === "comment" ? "replied to your post" : n.type === "rePost" ? "repost your post" : "followed you"}
+                        {n.type === "like" ? "liked your post" : n.type === "comment" ? "replied to your post" : n.type === "rePost" ? "reposted your post" : "followed you"}
                     </div>
                 ))}
                 <span onClick={(reset)} className={`text-center p-2 rounded-md ${notifications.length > 0 ? "bg-black text-sm text-textGrayLight cursor-pointer" : "text-base text-iconBlue"}`}>{notifications.length === 0 ? "You're all caught up!" : "Mark as read"}</span>
