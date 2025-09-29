@@ -28,7 +28,7 @@ const Notification = () => {
                 <div className="size-8"><Notifications /></div>
                 <span className="hidden xxl:inline">Notifications</span>
             </div>
-            {open && (<div className='absolute -right-full z-30 p-4 rounded-lg bg-white text-black flex flex-col gap-4 w-max'>
+            {open && (<div className='absolute -right-full p-4 rounded-lg shadow-lg bg-white text-black flex flex-col gap-4 w-max'>
                 <h1 className='text-xl text-textGray'>Notifications</h1>
                 {notifications.map(n => (
                     <div className='cursor-pointer' key={n.id}>

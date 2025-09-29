@@ -86,7 +86,7 @@ const LeftBar = () => {
         {/* MENU LIST */}
         <div className="flex flex-col gap-4">
           {menuList.map((item, i) => (
-            <div key={item.id || i} >
+            <div key={item.id || i} className="space-y-4" >
               {i === 2 && user && (<div><Notification /></div>)}
               <Link
                 href={item.link}

@@ -85,7 +85,7 @@ const Post = ({ type, post }: { type?: "status" | "comment", post: PostWithDetai
                 {/* AVATAR */}
                 <div
                   className={`${type === "status" && "hidden"
-                    } relative size-10 rounded-full overflow-hidden`}
+                    } relative size-10 rounded-full overflow-hidden -z-10`}
                 >
                   <Image path={originalPost.user.img || "sm/general/avatarNew.png"} alt="" w={100} h={100} tr={true} />
                 </div>
@@ -101,7 +101,7 @@ const Post = ({ type, post }: { type?: "status" | "comment", post: PostWithDetai
             <PostInfo />
           </div>
           {/* TEXT & MEDIA */}
-          <Link href={`/${originalPost.user.username}/status/${originalPost.id}`} className="relative">
+          <Link href={`/${originalPost.user.username}/status/${originalPost.id}`} className="relative -z-10">
             <p className={`${type === "status" && "text-lg"}`}>{originalPost.desc}</p>
             {originalPost.img && (
               <Image path={originalPost.img} alt="" w={600} h={originalPost.imgHeight || 600} />
