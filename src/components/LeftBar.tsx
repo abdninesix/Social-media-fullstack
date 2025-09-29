@@ -118,6 +118,7 @@ const LeftBar = () => {
           Post
         </Link>
       </div>
+      <Socket />
       {/* USER */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -131,7 +132,6 @@ const LeftBar = () => {
         </div>
         <div className="hidden xxl:block cursor-pointer font-bold">...</div>
       </div>
-      <Socket />
     </div>
   );
 };

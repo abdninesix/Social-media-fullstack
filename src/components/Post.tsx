@@ -66,53 +66,32 @@ const Post = ({ type, post }: { type?: "status" | "comment", post: PostWithDetai
         <div className="flex-1 flex flex-col gap-2">
           {/* TOP */}
           <div className="w-full flex justify-between">
-            <Link href={`/${originalPost.user.username}`} className="flex gap-4">
+            <Link href={`/${originalPost.user.username}`} className="flex items-center gap-2 flex-wrap">
+              {/* AVATAR */}
               <div
-                className={`${type !== "status" && "hidden"
-                  } relative size-10 rounded-full overflow-hidden`}
+                className='relative size-10 rounded-full overflow-hidden -z-10'
               >
-                <Image
-                  path={originalPost.user.img || "sm/general/avatarNew.png"}
-                  alt=""
-                  w={100}
-                  h={100}
-                  tr={true}
-                />
+                <Image path={originalPost.user.img || "sm/general/avatarNew.png"} alt="" w={100} h={100} tr={true} />
               </div>
-              <div
-                className="flex items-center gap-2 flex-wrap"
+              <h1 className="text-md font-bold">{originalPost.user.displayName}</h1>
+              <span
+                className="text-textGray"
               >
-                {/* AVATAR */}
-                <div
-                  className={`${type === "status" && "hidden"
-                    } relative size-10 rounded-full overflow-hidden -z-10`}
-                >
-                  <Image path={originalPost.user.img || "sm/general/avatarNew.png"} alt="" w={100} h={100} tr={true} />
-                </div>
-                <h1 className="text-md font-bold">{originalPost.user.displayName}</h1>
-                <span
-                  className="text-textGray"
-                >
-                  @{originalPost.user.username}
-                </span>
-                <span className="text-textGray text-sm">{format(originalPost.createdAt)}</span>
-              </div>
+                @{originalPost.user.username}
+              </span>
+              <span className="text-textGray text-sm">{format(originalPost.createdAt)}</span>
             </Link>
             <PostInfo />
           </div>
           {/* TEXT & MEDIA */}
-          <Link href={`/${originalPost.user.username}/status/${originalPost.id}`} className="relative -z-10">
+          <Link href={`/${originalPost.user.username}/status/${originalPost.id}`}>
             <p className={`${type === "status" && "text-lg"}`}>{originalPost.desc}</p>
             {originalPost.img && (
-              <Image path={originalPost.img} alt="" w={600} h={originalPost.imgHeight || 600} />
+              <Image path={originalPost.img} alt="" w={600} h={originalPost.imgHeight || 600} className={originalPost.isSensitive ? "blur-md" : ""} />
             )}
             {originalPost.video && (
-              <Video path={originalPost.video} />
+              <Video path={originalPost.video} className={originalPost.isSensitive ? "blur-sm" : ""} />
             )}
-            {originalPost.isSensitive &&
-              <div className="absolute flex items-center justify-center top-0 size-full backdrop-blur-md z-20">
-                <span className="w-fit px-4 py-2 rounded-full bg-red-500 text-white">Sensitive Content</span>
-              </div>}
           </Link>
           {type === "status" && (
             <span className="text-textGray">{originalPost.createdAt.toLocaleTimeString()} · {originalPost.createdAt.toDateString()}</span>

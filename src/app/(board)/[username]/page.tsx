@@ -22,7 +22,7 @@ const UserPage = async ({ params }: { params: Promise<{ username: string }> }) =
   return (
     <div className="">
       {/* PROFILE TITLE */}
-      <div className="flex items-center gap-8 sticky top-0 backdrop-blur-md p-4 z-10 bg-[#00000084]">
+      <div className="flex items-center gap-8 sticky top-0 backdrop-blur-md p-4 bg-[#00000084]">
         <Link href="/">
           <Image path="sm/icons/back.svg" alt="back" w={24} h={24} />
         </Link>
@@ -31,7 +31,7 @@ const UserPage = async ({ params }: { params: Promise<{ username: string }> }) =
       {/* INFO */}
       <div className="">
         {/* COVER & AVATAR CONTAINER */}
-        <div className="relative w-full">
+        <div className="relative w-full -z-10">
           {/* COVER */}
           <div className="w-full aspect-[3/1] relative">
             <Image path={user.cover || "sm/general/coverNew.jpeg"} alt="" w={600} h={200} tr={true} />
