@@ -33,7 +33,7 @@ const Comments = ({ comments, postId, username }: { comments: commentWithDetails
     <div className=''>
       {user &&
         (<form action={formAction} className='flex items-center justify-between gap-4 p-4 '>
-          <div className='relative size-10 rounded-full overflow-hidden'>
+          <div className='relative -z-10 size-10 rounded-full overflow-hidden'>
             <Image src={user?.imageUrl} alt="avatar" w={100} h={100} tr={true} />
           </div>
           <input type="number" name="postId" hidden readOnly value={postId} />
