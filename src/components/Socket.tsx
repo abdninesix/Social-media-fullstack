@@ -43,9 +43,10 @@ export default function Socket() {
   }, [user]);
 
   return (
-    <div className="absolute top-1/2 right-0 text-xs text-textGray -rotate-45">
-      <p>Status: {isConnected ? "connected" : "disconnected"}</p>
-      <p>Transport: {transport}</p>
-    </div>
+    // <div className="absolute top-1/2 right-0 text-xs text-textGray -rotate-45">
+    //   <p>Status: {isConnected ? "connected" : "disconnected"}</p>
+    //   <p>Transport: {transport}</p>
+    // </div>
+    <></>
   );
 }

@@ -12,7 +12,7 @@ type PostWithDetails = PostType & {
     username: string;
     img: string | null;
   };
-  rePost?: PostType & {
+  rePost?: (PostType & {
     user: {
       displayName: string | null;
       username: string;
@@ -26,7 +26,7 @@ type PostWithDetails = PostType & {
     likes: { id: number }[];
     rePosts: { id: number }[];
     saves: { id: number }[];
-  };
+  }) | null;
   _count: {
     likes: number;
     rePosts: number;
