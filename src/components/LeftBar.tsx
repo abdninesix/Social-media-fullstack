@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Image from "./Image";
-import { Bookmark, Community, Explore, Home, Jobs, Message, More, Notification, Premium, Profile } from "./svg";
+import { Bookmark, Community, Explore, Home, Jobs, Message, More, Premium, Profile } from "./svg";
+import Notification from "./Notification";
 import { useUser } from "@clerk/nextjs";
 import Socket from "./Socket";
 
@@ -19,12 +20,12 @@ const menuList = [
     link: "/",
     icon: <Explore />,
   },
-  {
-    id: 3,
-    name: "Notification",
-    link: "/",
-    icon: <Notification />,
-  },
+  // {
+  //   id: 3,
+  //   name: "Notification",
+  //   link: "/",
+  //   icon: <Notification />,
+  // },
   {
     id: 4,
     name: "Messages",
@@ -84,21 +85,23 @@ const LeftBar = () => {
         </Link>
         {/* MENU LIST */}
         <div className="flex flex-col gap-4">
-          {menuList.map((item) => (
-            <Link
-              href={item.link}
-              className="p-2 rounded-full hover:bg-inputGray text-white flex items-center gap-4"
-              key={item.id}
-            >
-              <div className="size-8">{item.icon}</div>
-              {/* <Image
+          {menuList.map((item, i) => (
+            <div key={item.id || i} >
+              {i === 2 && user && (<div><Notification /></div>)}
+              <Link
+                href={item.link}
+                className="p-2 rounded-full hover:bg-inputGray text-white flex items-center gap-4"
+              >
+                <div className="size-8">{item.icon}</div>
+                {/* <Image
                 path={`sm/icons/${item.icon}`}
                 alt={item.name}
                 w={24}
                 h={24}
               /> */}
-              <span className="hidden xxl:inline">{item.name}</span>
-            </Link>
+                <span className="hidden xxl:inline">{item.name}</span>
+              </Link>
+            </div>
           ))}
         </div>
         {/* BUTTON */}
