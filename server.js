@@ -1,6 +1,7 @@
 import { createServer } from "node:http";
 import next from "next";
 import { Server } from "socket.io";
+import { v4 } from "uuid";
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";
@@ -43,6 +44,10 @@ app.prepare().then(() => {
     socket.on("disconnect", () => {
       removeUser(socket.id);
     });
+    socket.on("sendNotification", ({ receiverUsername, data }) => {
+      const receiver = getUser(receiverUsername)
+      io.to(receiver.socketId).emit("getNotification", { id: v4(), ...data })
+    })
   });
 
   httpServer
