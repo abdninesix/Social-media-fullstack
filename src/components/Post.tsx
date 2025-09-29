@@ -110,8 +110,8 @@ const Post = ({ type, post }: { type?: "status" | "comment", post: PostWithDetai
               <Video path={originalPost.video} />
             )}
             {originalPost.isSensitive &&
-              <div className="absolute flex items-center justify-center top-0 size-full bg-black/90 z-20">
-                <span className="w-fit p-2 rounded-full bg-red-500 text-white">Sensitive Content</span>
+              <div className="absolute flex items-center justify-center top-0 size-full backdrop-blur-md z-20">
+                <span className="w-fit px-4 py-2 rounded-full bg-red-500 text-white">Sensitive Content</span>
               </div>}
           </Link>
           {type === "status" && (
