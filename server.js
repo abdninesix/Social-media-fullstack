@@ -14,13 +14,15 @@ let onlineUsers = [] // An empty array
 
 const addUser = (username, socketId) => { // A function to add user to array
   const isExist = onlineUsers.find(user => user.socketId === socketId)
-  if (!isExist) { onlineUsers.push({ username, socketId }) }
-  console.log(username + " connected")
+  if (!isExist) {
+    onlineUsers.push({ username, socketId })
+    console.log(username + " connected")
+  }
 }
 
 const removeUser = (socketId) => { // A function to remove user from array
-  onlineUsers = onlineUsers.filter(user => user.username !== username)
-  console.log(username + " disconnected")
+  onlineUsers = onlineUsers.filter(user => user.socketId !== socketId)
+  console.log("User disconnected")
 }
 
 const getUser = (username) => { // A function to get user from array

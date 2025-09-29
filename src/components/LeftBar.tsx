@@ -119,7 +119,6 @@ const LeftBar = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="size-10 relative rounded-full overflow-hidden">
-            {/* <UserButton /> */}
             <Image src={user?.imageUrl} path={user?.imageUrl ? "" : "sm/general/avatarNew.png"} alt="avatar" w={100} h={100} tr={true} />
           </div>
           <div className="hidden xxl:flex flex-col">
