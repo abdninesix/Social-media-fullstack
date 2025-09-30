@@ -16,7 +16,7 @@ const SignUpPage = () => {
       {/* Right side */}
       <div className="w-full lg:w-1/2 flex flex-col items-center justify-center gap-8">
 
-        <h1 className='text-2xl xsm:4xl md:text-6xl font-bold'>Let's go!</h1>
+        <h1 className='text-2xl xsm:4xl md:text-6xl font-bold'>Let&apos;s go!</h1>
         <SignUp.Root>
 
           <SignUp.Step name="start" className='flex flex-col gap-8'>

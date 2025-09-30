@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "@/components/Image";
 import Share from "@/components/Share";
 import { useRouter } from "next/navigation";
 

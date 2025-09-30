@@ -3,9 +3,6 @@
 import React, { useEffect, useState } from 'react'
 import { Notifications } from './svg'
 import { socket } from '@/socket'
-import Link from 'next/link'
-import { Span } from 'next/dist/trace'
-import { Router } from 'next/router'
 import { useRouter } from 'next/navigation'
 
 type NotificationType = {
