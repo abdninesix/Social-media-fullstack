@@ -6,7 +6,7 @@ export default function BoardLayout({
   modal
 }: Readonly<{
   children: React.ReactNode;
-  modal: React.ReactNode;
+  modal?: React.ReactNode;
 }>) {
   return (
     <div className="max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl xxl:max-w-screen-xxl mx-auto flex justify-between duration-200">
