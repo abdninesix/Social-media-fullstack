@@ -16,7 +16,7 @@ const Video = ({ path, className }: VideoTypes) => {
       path={path}
       className={className}
       transformation={[
-        { width: "1920", height: "1080", quality: 90 },
+        { width: "1920", height: "1080", quality: 90 as any },
         { raw: "l-text,fs-100,co-white,l-end" },
       ]}
       controls
